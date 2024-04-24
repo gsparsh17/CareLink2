@@ -73,7 +73,7 @@ def panel(request):
 
 def disease(request):
     
-    file_path = r"C:\Users\rudra\Downloads\Medanta.xlsx"
+    file_path = r"Main\convert (1).xlsx"
     df = pd.read_excel(file_path)
     disease='Cancer'
     result=[]
@@ -87,7 +87,7 @@ def disease1(request):
     find=''
     if request.method=='POST':
         find=request.POST.get('mySearch')      
-        file_path = r"C:\Users\rudra\Downloads\convert (1).xlsx"
+        file_path = r"Main\Medanta.xlsx"
         df = pd.read_excel(file_path)
         fil = df[(df['d1'] == find) | (df['d2'] == find) | (df['d3'] == find)]
         hospital = fil['name']
