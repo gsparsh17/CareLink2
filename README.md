@@ -5,5 +5,5 @@ This is the app called Carelink that works as a bridge between doctors and patie
 `git clone https://github.com/Freebirddd123/Google_Girl_Hackathon.git`
 
 # Running The Code
-`cd Google_Girl_Hackathon` /n
+`cd Google_Girl_Hackathon` <br>
 `python manage.py runserver`
