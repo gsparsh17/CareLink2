@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Excel File Parser</title>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+ </head>
+ <body>
+ 
+ <!-- Hide the file input element -->
+ <input type="file" id="fileUpload" accept=".xlsx" style="display: none;" />
+ 
+ <!-- Button to trigger file upload -->
+ <button onclick="uploadFile()">Upload Excel File</button>
+ 
+ <script>
+     // Function to trigger file input click event
+     function uploadFile() {
+         const fileInput = document.getElementById('fileUpload');
+         fileInput.click();
+     }
+ 
+     // Event listener for file input change
+     const fileInput = document.getElementById('fileUpload');
+     fileInput.addEventListener('change', function(event) {
+         const file = event.target.files[0];
+         const excelParser = new ExcelToJSON();
+         excelParser.parseExcel(file);
+     });
+ 
+     // ExcelToJSON class for parsing Excel file
+     var ExcelToJSON = function() {
+         this.parseExcel = function(file) {
+             var reader = new FileReader();
+             reader.onload = function(e) {
+                 var data = e.target.result;
+                 var workbook = XLSX.read(data, { type: 'binary' });
+ 
+                 var allSheetData = {};
+                 workbook.SheetNames.forEach(function(sheetName) {
+                     // Convert sheet data to JSON
+                     var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+                     allSheetData[sheetName] = XL_row_object;
+                 });
+ 
+                 // Store all sheet data in local storage
+                 localStorage.setItem('excelData', JSON.stringify(allSheetData));
+ 
+                 // Display all sheet data (you can modify this part as needed)
+                 console.log(allSheetData);
+             };
+ 
+             reader.onerror = function(ex) {
+                 console.log(ex);
+             };
+ 
+             reader.readAsBinaryString(file);
+         };
+     };
+ 
+     // Parse the Excel data from local storage and filter hospitals
+     function parseExcelFromLocalStorage() {
+         const excelData = localStorage.getItem('excelData');
+         if (excelData) {
+             const allSheetData = JSON.parse(excelData);
+             
+             // Access and manipulate data as needed
+             console.log(allSheetData);
+         } else {
+             console.log('No Excel data found in local storage.');
+         }
+     }
+ 
+     // Check if Excel data is already stored in local storage and parse it
+     parseExcelFromLocalStorage();
+ </script>
+ 
+ </body>
+ </html>

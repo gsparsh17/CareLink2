@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html>
+  {% load static %}
+    <link rel="icon" type="image/x-icon" href="logo1.png">
+    <meta charset="utf-8">
+    <title>CareLink | Dispensary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0;">
+<head>
+    <title>CareLink Dispensary</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+    <style>
+        /* CSS styles go here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: auto;
+            
+        }
+        header {
+            vertical-align: middle;
+            background-color: orange;
+            color: #FFF;
+            text-align: center;
+            padding: 20px;
+            height: 200px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav ul li {
+            margin: 0 10px;
+            padding: 10px;
+            color: #FFF;
+            cursor: pointer;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+        .navbar{
+    display:flex;
+    background-color:white;
+    /* gap: 310px; */
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    box-shadow: 2px 2px 10px black;
+    padding-bottom: 5px;
+    height: 90px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    z-index: 3;
+}
+.head{
+    position: relative;
+    text-align:center;
+    display: inline-block;
+    margin: auto;
+    
+}
+.home{
+    z-index: 5;
+    top: 0px;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+.home h2{
+    position: relative;
+    top: 73%;
+    left: 3%;
+    color: black;
+    font-family: Perpetua, Segoe UI, 'Open Sans';
+    text-align: center;
+}
+#mydiv1{
+    position: absolute;
+    top: 35%;
+    left: 42%;
+    /* filter: drop-shadow(5px 5px 5px #222); */
+    box-shadow: none;
+}
+#mydiv2{
+    position: absolute;
+    top: 0%;
+    left: 40%;
+    /* filter: drop-shadow(5px 5px 5px #222); */
+    box-shadow: none;
+}
+.link{
+    position: absolute;
+    padding: 10px;
+    font-size:20px;
+    display: inline-block;
+    margin-right: 0px;
+    top: -20px;
+    padding-bottom: 0px;
+
+}
+.link img{
+    margin: 10px;
+    top: 20px;
+    width: 80px;
+    height: 80px;
+}
+h1{
+    top: -20px;
+    color: crimson;
+    text-shadow: 0px 0px 1px black;
+    text-align: center;
+    margin-bottom: 0px;
+    top: 20px;
+}
+.up{
+    color: white;
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 10px;
+}
+.pris{
+    margin-top: 50px;
+}
+.product-main { margin-bottom: 30px; }
+
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+}
+
+.product-grid .showcase {
+  border: 1px solid var(--cultured);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  transition: var(--transition-timing);
+}
+
+.product-grid .showcase:hover { box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.1); }
+
+.product-grid .showcase-banner { position: relative; }
+
+.product-grid .product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-timing);
+}
+
+.product-grid .product-img.default {
+  position: relative;
+  z-index: 1;
+}
+
+.product-grid .product-img.hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  opacity: 0;
+}
+
+.product-grid .showcase:hover .product-img.hover { opacity: 1; }
+
+.product-grid .showcase:hover .product-img.default { opacity: 0; }
+
+.product-grid .showcase:hover .product-img { transform: scale(1.1); }
+
+.product-grid .showcase-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: var(--ocean-green);
+  font-size: var(--fs-8);
+  font-weight: var(--weight-500);
+  color: var(--white);
+  padding: 0 8px;
+  border-radius: var(--border-radius-sm);
+  z-index: 3;
+}
+
+.product-grid .showcase-badge.angle {
+  top: 8px;
+  left: -29px;
+  transform: rotate(-45deg);
+  text-transform: uppercase;
+  font-size: 11px;
+  padding: 5px 40px;
+}
+
+.product-grid .showcase-badge.black { background: var(--eerie-black); }
+
+.product-grid .showcase-badge.pink { background: var(--salmon-pink); }
+
+.product-grid .showcase-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  transform: translateX(50px);
+  transition: var(--transition-timing);
+  z-index: 3;
+}
+
+.product-grid .showcase:hover .showcase-actions { transform: translateX(0); }
+
+.product-grid .btn-action {
+  background: var(--white);
+  color: var(--sonic-silver);
+  margin-bottom: 5px;
+  border: 1px solid var(--cultured);
+  padding: 5px;
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition-timing);
+}
+
+.product-grid .btn-action:hover {
+  background: var(--eerie-black);
+  color: var(--white);
+  border-color: var(--eerie-black);
+}
+
+.product-grid .showcase-content { padding: 15px 20px 0; }
+
+.product-grid .showcase-category {
+  color: var(--salmon-pink);
+  font-size: var(--fs-9);
+  font-weight: var(--weight-500);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.product-grid .showcase-title {
+  color: var(--sonic-silver);
+  font-size: var(--fs-8);
+  font-weight: var(--weight-300);
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  transition: var(--transition-timing);
+}
+
+.product-grid .showcase-title:hover { color: var(--eerie-black); }
+
+.product-grid .showcase-rating {
+  display: flex;
+  color: var(--sandy-brown);
+  margin-bottom: 10px;
+}
+
+.product-grid .price-box {
+  display: flex;
+  gap: 10px;
+  font-size: var(--fs-7);
+  color: var(--eerie-black);
+  margin-bottom: 10px;
+}
+
+.product-grid .price { font-weight: var(--weight-700); }
+
+.product-grid del { color: var(--sonic-silver); }
+    </style>
+</head>
+<body>
+    <div class="home" id="home">
+        <img class="load" id="mydiv2" src="logo.png" width="370" height="300" alt="">
+        <img class="load" id="mydiv1" src="gif.gif" width="300" height="300" alt="">
+        <h2 id="wel">Loading...</h2>
+    </div>
+    <header class="navbar">
+        <pre id="info"></pre>
+        <div class="link"><a href="https://www.india.gov.in/spotlight/smart-cities-mission-step-towards-smart-india" target="_blank"><img src="logo1.png" alt=""></a></div>
+        <div class="head">
+            <div id="demo"></div>
+            <h1>CareLink</h1>
+        </div>
+    </header>
+    <header>
+        <h1 class="up">Medical Store E-Commerce Website</h1>
+        <button class="pris">Submit Your Priscription</button>
+    </header>
+    <nav>
+        <ul>
+            <li>Home</li>
+            <li>Products</li>
+            <li>About Us</li>
+            <li>Contact Us</li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Welcome to Our Medical Store!</h2>
+        <!-- Add your product listings, search functionality, and other content here -->
+        <!-- <form action="action_page.php" method="post">
+            <div class="imgcontainer">
+              <img src="img_avatar2.png" alt="Avatar" class="avatar">
+            </div>
+          
+            <div class="container">
+              <label for="uname"><b>Username</b></label>
+              <input type="text" placeholder="Enter Username" name="uname" required>
+          
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="psw" required>
+          
+              <button type="submit">Login</button>
+              <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+              </label>
+            </div>
+          
+            <div class="container" style="background-color:#f1f1f1">
+              <button type="button" class="cancelbtn">Cancel</button>
+              <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+          </form> -->
+          <div class="product-minimal">
+
+            <div class="product-showcase">
+
+              <h2 class="title">New Arrivals</h2>
+
+              <div class="showcase-wrapper has-scrollbar">
+
+                <div class="showcase-container">
+
+                  <div class="showcase">
+
+                    <a href="#" class="showcase-img-box">
+                      <img src="karela-juice-1000x1000.jpg" alt="relaxed short full sleeve t-shirt" width="70" class="showcase-img">
+                    </a>
+
+                    <div class="showcase-content">
+
+                      <a href="#">
+                        <h4 class="showcase-title">Karela Juice</h4>
+                      </a>
+
+                      <a href="#" class="showcase-category">Healthcare</a>
+
+                      <div class="price-box">
+                        <p class="price">₹45.00</p>
+                        <del>₹12.00</del>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  <div class="showcase">
+                  
+                    <a href="#" class="showcase-img-box">
+                      <img src="mother and baby.jpg" alt="girls pink embro design top" class="showcase-img" width="70">
+                    </a>
+                  
+                    <div class="showcase-content">
+                  
+                      <a href="#">
+                        <h4 class="showcase-title">Mother and Baby Gift Hamper</h4>
+                      </a>
+                  
+                      <a href="#" class="showcase-category">Mother and Baby Care</a>
+                  
+                      <div class="price-box">
+                        <p class="price">₹61.00</p>
+                        <del>₹9.00</del>
+                      </div>
+                  
+                    </div>
+                  
+                  </div>
+
+                  <div class="showcase">
+                  
+                    <a href="#" class="showcase-img-box">
+                      <img src="vit B.jpeg" alt="black floral wrap midi skirt" class="showcase-img"
+                        width="70">
+                    </a>
+                  
+                    <div class="showcase-content">
+                  
+                      <a href="#">
+                        <h4 class="showcase-title">e Vitamin B-complex Suppliments</h4>
+                      </a>
+                  
+                      <a href="#" class="showcase-category">Medicine</a>
+                  
+                      <div class="price-box">
+                        <p class="price">₹76.00</p>
+                        <del>₹25.00</del>
+                      </div>
+                  
+                    </div>
+                  
+                  </div>
+
+                  <div class="showcase">
+                  
+                    <a href="#" class="showcase-img-box">
+                      <img src="slipper-shoe-use-home.jpg" alt="pure garment dyed cotton shirt" class="showcase-img"
+                        width="70">
+                    </a>
+                  
+                    <div class="showcase-content">
+                  
+                      <a href="#">
+                        <h4 class="showcase-title">Pharmeasy Orthopedic Slippers</h4>
+                      </a>
+                  
+                      <a href="#" class="showcase-category">Orthocare</a>
+                  
+                      <div class="price-box">
+                        <p class="price">₹68.00</p>
+                        <del>₹31.00</del>
+                      </div>
+                  
+                    </div>
+                  
+                  </div>
+
+                </div>
+
+                <div class="showcase-container">
+                
+                  <div class="showcase">
+                
+                    <a href="#" class="showcase-img-box">
+                      <img src="abzorb-2.jpg" alt="men yarn fleece full-zip jacket" class="showcase-img"
+                        width="70">
+                    </a>
+                
+                    <div class="showcase-content">
+                
+                      <a href="#">
+                        <h4 class="showcase-title">Abzorb Total Skin Relief Dusting Powder (20% Extra) Bottle Of 120gm</h4>
+                      </a>
+                
+                      <a href="#" class="showcase-category">Healthcare</a>
+                
+                      <div class="price-box">
+                        <p class="price">₹61.00</p>
+                        <del>₹11.00</del>
+                      </div>
+                
+                    </div>
+                
+                  </div>
+                
+                  <div class="showcase">
+                
+                    <a href="#" class="showcase-img-box">
+                      <img src="softovac_powder_250gm_115839_0_1.jpg" alt="mens winter leathers jackets" class="showcase-img"
+                        width="70">
+                    </a>
+                
+                    <div class="showcase-content">
+                
+                      <a href="#">
+                        <h4 class="showcase-title">Softovac Sf Constipation Powder Bottle Of 250 G</h4>
+                      </a>
+                
+                      <a href="#" class="showcase-category">Healthcare</a>
+                
+                      <div class="price-box">
+                        <p class="price">₹32.00</p>
+                        <del>₹20.00</del>
+                      </div>
+                
+                    </div>
+                
+                  </div>
+                
+                  <div class="showcase">
+                
+                    <a href="#" class="showcase-img-box">
+                      <img src="OIP (1).jpeg" alt="mens winter leathers jackets" class="showcase-img"
+                        width="70" height="89">
+                    </a>
+                
+                    <div class="showcase-content">
+                
+                      <a href="#">
+                        <h4 class="showcase-title">Everherb (By Pharmeasy) Flaxseed Omega 3 - Essential Fatty Acids - Healthy Heart - Bottle Of 60 </h4>
+                      </a>
+                
+                      <a href="#" class="showcase-category">Healthcare</a>
+                
+                      <div class="price-box">
+                        <p class="price">₹50.00</p>
+                        <del>₹25.00</del>
+                      </div>
+                
+                    </div>
+                
+                  </div>
+                
+                  <div class="showcase">
+                
+                    <a href="#" class="showcase-img-box">
+                      <img src="neurobion-plus-tablet-10s-front-2.png" alt="better basics french terry sweatshorts" class="showcase-img"
+                        width="70">
+                    </a>
+                
+                    <div class="showcase-content">
+                
+                      <a href="#">
+                        <h4 class="showcase-title">Neurobion Plus Strip Of 10 Tablets</h4>
+                      </a>
+                
+                      <a href="#" class="showcase-category">Medicine</a>
+                
+                      <div class="price-box">
+                        <p class="price">₹20.00</p>
+                        <del>₹10.00</del>
+                      </div>
+                
+                    </div>
+                
+                  </div>
+                
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="product-showcase">
+            
+              <h2 class="title">Trending</h2>
+            
+              <div class="showcase-wrapper  has-scrollbar">
+            
+                <div class="showcase-container">
+            
+                  <div class="showcase">
+            
+                    <a href="#" class="showcase-img-box">
+                      <img src="shelcal_500mg_tablet_15s_509305_1_0.jpg" alt="running & trekking shoes - white" class="showcase-img"
+                        width="70">
+                    </a>
+            
+                    <div class="showcase-content">
+            
+                      <a href="#">
+                        <h4 class="showcase-title">Shelcal 500mg Strip Of 15 Tablets</h4>
+                      </a>
+            
+                      <a href="#" class="showcase-category">  Orthocare</a>
+            
+                      <div class="price-box">
+                        <p class="price">₹49.00</p>
+                        <del>₹15.00</del>
+                      </div>
+            
+                    </div>
+            
+                  </div>
+            
+                  <div class="showcase">
+            
+                    <a href="#" class="showcase-img-box">
+                      <img src="81zIKXQIB+L.SX466.jpg" alt="trekking & running shoes - black" class="showcase-img"
+                        width="70">
+                    </a>
+            
+                    <div class="showcase-content">
+            
+                      <a href="#">
+                        <h4 class="showcase-title">Evion 400mg Strip Of 20 Capsule</h4>
+                      </a>
+            
+                      <a href="#" class="showcase-category">Medicine</a>
+            
+                      <div class="price-box">
+                        <p class="price">₹78.00</p>
+                        <del>₹36.00</del>
+                      </div>
+            
+                    </div>
+            
+                  </div>
+            
+                  <div class="showcase">
+            
+                    <a href="#" class="showcase-img-box">
+                      <img src="OIP (2).jpeg" alt="womens party wear shoes" class="showcase-img"
+                        width="70">
+                    </a>
+            
+                    <div class="showcase-content">
+            
+                      <a href="#">
+                        <h4 class="showcase-title">Pharmeasy Pill Box Organizer</h4>
+                      </a>
+            
+                      <a href="#" class="showcase-category">Healthcare</a>
+            
+                      <div class="price-box">
+                        <p class="price">₹94.00</p>
+                        <del>₹42.00</del>
+                      </div>
+            
+                    </div>
+            
+                  </div>
+            
+                  <div class="showcase">
+            
+                    <a href="#" class="showcase-img-box">
+                      <img src="cetaphil-classic-gentle-skin-cleanser-face-body-125-ml.jpg" alt="sports claw women's shoes" class="showcase-img"
+                        width="70">
+                    </a>
+            
+                    <div class="showcase-content">
+            
+                      <a href="#">
+                        <h4 class="showcase-title">Cetaphil Gentle Skin Cleanser - 125ml</h4>
+                      </a>
+            
+                      <a href="#" class="showcase-category">Skincare</a>
+            
+                      <div class="price-box">
+                        <p class="price">₹54.00</p>
+                        <del>₹65.00</del>
+                      </div>
+            
+                    </div>
+            
+                  </div>
+            
+                </div>
+            
+                <div class="showcase-container">
+            
+                  <div class="showcase">
+            
+                    <a href="#" class="showcase-img-box">
+                      <img src="liveasy-foods-healthy-roasted-seed-mix-blend-of-6-fibre-rich-healthy-roasted-seeds-2-1634545818.jpg" alt="air tekking shoes - white" class="showcase-img"
+                        width="70">
+                    </a>
+            
+                    <div class="showcase-content">
+            
+                      <a href="#">
+                        <h4 class="showcase-title">Liveasy Foods Healthy Roasted Seed Mix - Blend Of 6 Fibre Rich Healthy Roasted Seeds - 200 Gms</h4>
+                      </a>
+            
+                      <a href="#" class="showcase-category">Heathcare</a>
+            
+                      <div class="price-box">
+                        <p class="price">₹52.00</p>
+                        <del>₹55.00</del>
+                      </div>
+            
+                    </div>
+            
+                  </div>
+            
+                  <div class="showcase">
+            
+                    <a href="#" class="showcase-img-box">
+                      <img src="OIP (3).jpeg" alt="Boot With Suede Detail" class="showcase-img" width="70">
+                    </a>
+            
+                    <div class="showcase-content">
+            
+                      <a href="#">
+                        <h4 class="showcase-title">Liveasy Wellness Antacid Mint Flavour Sugar Free Bottle Of 200ml Oral Liquid</h4>
+                      </a>
+            
+                      <a href="#" class="showcase-category">Heathcare</a>
+            
+                      <div class="price-box">
+                        <p class="price">₹20.00</p>
+                        <del>₹30.00</del>
+                      </div>
+            
+                    </div>
+            
+                  </div>
+            
+                  <div class="showcase">
+            
+                    <a href="#" class="showcase-img-box">
+                      <img src="nee0022_1_1 - Copy.jpg" alt="men's leather formal wear shoes" class="showcase-img"
+                        width="70">
+                    </a>
+            
+                    <div class="showcase-content">
+            
+                      <a href="#">
+                        <h4 class="showcase-title">Neeri Syrup 100ml</h4>
+    
+                      </a>
+            
+                      <a href="#" class="showcase-category">Medicine</a>
+            
+                      <div class="price-box">
+                        <p class="price">₹56.00</p>
+                        <del>₹78.00</del>
+                      </div>
+            
+                    </div>
+            
+                  </div>
+            
+                  <div class="showcase">
+            
+                    <a href="#" class="showcase-img-box">
+                      <img src="58317.jpg" alt="casual men's brown shoes" class="showcase-img" width="70">
+                    </a>
+            
+                    <div class="showcase-content">
+            
+                      <a href="#">
+                        <h4 class="showcase-title">Himalaya Cystone Tablets - 60'S</h4>
+                      </a>
+            
+                      <a href="#" class="showcase-category">Medicine</a>
+            
+                      <div class="price-box">
+                        <p class="price">₹50.00</p>
+                        <del>₹55.00</del>
+                      </div>
+            
+                    </div>
+            
+                  </div>
+            
+                </div>
+            
+              </div>
+            
+            </div>
+
+            <div class="product-showcase">
+            
+              <h2 class="title">Top Rated</h2>
+            
+              <div class="showcase-wrapper  has-scrollbar">
+            
+                <div class="showcase-container">
+            
+                  <div class="showcase">
+            
+                    <a href="#" class="showcase-img-box">
+                      <img src="61xep7vr8ML.SL1500.jpg" alt="pocket watch leather pouch" class="showcase-img"
+                        width="70">
+                    </a>
+            
+                    <div class="showcase-content">
+            
+                      <a href="#">
+                        <h4 class="showcase-title">Everherb Giloy Tulsi Juice - Strengthens Body Defence System - Natural Immunity Booster - 1 Litre</h4>
+                      </a>
+            
+                      <a href="#" class="showcase-category">healthcare</a>
+            
+                      <div class="price-box">
+                        <p class="price">₹50.00</p>
+                        <del>₹34.00</del>
+                      </div>
+            
+                    </div>
+            
+                  </div>
+            
+                  <div class="showcase">
+            
+                    <a href="#" class="showcase-img-box">
+                      <img src="R (1).jpeg" alt="silver deeert necklace" class="showcase-img"
+                        width="70">
+                    </a>
+            
+                    <div class="showcase-content">
+            
+                      <a href="#">
+                        <h4 class="showcase-title">Himalaya Liv.52 Hb Capsules - 10'S</h4>
+                      </a>
+            
+                      <a href="#" class="showcase-category">Medicine</a>
+            
+                      <div class="price-box">
+                        <p class="price">₹84.00</p>
+                        <del>₹30.00</del>
+                      </div>
+            
+                    </div>
+            
+                  </div>
+            
+                  <div class="showcase">
+            
+                    <a href="#" class="showcase-img-box">
+                      <img src="pharmeasy-glutathione-promotes-healthy-skin-reverses-signs-of-ageing-bottle-of-30-6.2-1671743917.webp" alt="titan 100 ml womens perfume" class="showcase-img" height="80"
+                        width="70">
+                    </a>
+            
+                    <div class="showcase-content">
+            
+                      <a href="#">
+                        <h4 class="showcase-title">Pharmeasy Glutathione - Promotes Healthy Skin - Reverses Signs Of Ageing - Bottle Of 30</h4>
+                      </a>
+            
+                      <a href="#" class="showcase-category">Skincare</a>
+            
+                      <div class="price-box">
+                        <p class="price">₹42.00</p>
+                        <del>₹10.00</del>
+                      </div>
+            
+                    </div>
+            
+                  </div>
+            
+                  <div class="showcase">
+            
+                    <a href="#" class="showcase-img-box">
+                      <img src="613Rg-IZn1L.SL1500 - Copy.jpg" alt="men's leather reversible belt" class="showcase-img"
+                        width="70">
+                    </a>
+            
+                    <div class="showcase-content">
+            
+                      <a href="#">
+                        <h4 class="showcase-title">Liveasy Essentials Bamboo Cotton Buds - 80 Sticks/160 Swabs</h4>
+                      </a>
+            
+                      <a href="#" class="showcase-category">Healhcare</a>
+            
+                      <div class="price-box">
+                        <p class="price">₹24.00</p>
+                        <del>₹10.00</del>
+                      </div>
+            
+                    </div>
+            
+                  </div>
+            
+                </div>
+            
+                <div class="showcase-container">
+            
+                  <div class="showcase">
+            
+                    <a href="#" class="showcase-img-box">
+                      <img src="OIP (4).jpeg" alt="platinum zircon classic ring" class="showcase-img"
+                        width="70">
+                    </a>
+            
+                    <div class="showcase-content">
+            
+                      <a href="#">
+                        <h4 class="showcase-title">Dettol Germ Protection Ph-Balanced Liquid Handwash Refill, Skincare - 675 Ml</h4>
+                      </a>
+            
+                      <a href="#" class="showcase-category">Skincare</a>
+            
+                      <div class="price-box">
+                        <p class="price">₹62.00</p>
+                        <del>₹65.00</del>
+                      </div>
+            
+                    </div>
+            
+                  </div>
+            
+                  <div class="showcase">
+            
+                    <a href="#" class="showcase-img-box">
+                      <img src="OIP (5).jpeg" alt="smart watche vital plus" class="showcase-img" width="70">
+                    </a>
+            
+                    <div class="showcase-content">
+            
+                      <a href="#">
+                        <h4 class="showcase-title">Liveasy Wellness Oral Rehydration Salts-20.5g Sachet -Orange Flavour</h4>
+                      </a>
+            
+                      <a href="#" class="showcase-category">Healthcare</a>
+            
+                      <div class="price-box">
+                        <p class="price">₹56.00</p>
+                        <del>₹78.00</del>
+                      </div>
+            
+                    </div>
+            
+                  </div>
+            
+                  <div class="showcase">
+            
+                    <a href="#" class="showcase-img-box">
+                      <img src="americancrew-daily-shampoo-conditioner-combo-33.8oz-1417492.1.jpg" alt="shampoo conditioner packs" class="showcase-img"
+                        width="70">
+                    </a>
+            
+                    <div class="showcase-content">
+            
+                      <a href="#">
+                        <h4 class="showcase-title">shampoo conditioner packs</h4>
+                      </a>
+            
+                      <a href="#" class="showcase-category">Haircare</a>
+            
+                      <div class="price-box">
+                        <p class="price">₹20.00</p>
+                        <del>₹30.00</del>
+                      </div>
+            
+                    </div>
+            
+                  </div>
+            
+                  <div class="showcase">
+            
+                    <a href="#" class="showcase-img-box">
+                      <img src="OIP (6).jpeg" alt="rose gold peacock earrings" class="showcase-img"
+                        width="70">
+                    </a>
+            
+                    <div class="showcase-content">
+            
+                      <a href="#">
+                        <h4 class="showcase-title">Dr. Morepen Gluco One Bg 03 Glucometer Test Strips Box Of 50</h4>
+                      </a>
+            
+                      <a href="#" class="showcase-category">Healthcare</a>
+            
+                      <div class="price-box">
+                        <p class="price">₹20.00</p>
+                        <del>₹30.00</del>
+                      </div>
+            
+                    </div>
+            
+                  </div>
+            
+                </div>
+            
+              </div>
+            
+            </div>
+
+          </div>
+    </main>
+</body>
+</html>
+<script>
+setTimeout(function() {
+    $('#mydiv2').fadeOut('fast');
+    $('#mydiv1').fadeOut('fast');
+    $('#wel').fadeOut('fast');
+    }, 2500);
+    setTimeout(function() {
+    $('#home').fadeOut('slow');
+    }, 2800);
+</script>

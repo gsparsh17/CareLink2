@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Doctor Request Panel</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+        background-color: aquamarine;
+    }
+    h1 {
+        margin-bottom: 20px;
+        color: crimson;
+    }
+    h3{
+        color: orange;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    form {
+        margin-bottom: 20px;
+    }
+    input[type="button"] {
+        cursor: pointer;
+        background-color: #28a745; /* Changed color to green */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 5px 10px;
+    }
+    input[type="button"]:hover {
+        background-color: #218838; /* Darker green on hover */
+    }
+    #upcomingAppointments {
+        margin-top: 20px;
+        background-color: orange;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 10px;
+        color: white;
+    }
+    button{
+        margin-left: 10px;
+    }
+    li{
+        margin: 20px;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome {{request.user.first_name}} ! </h1>
+<h3>Congratulations, Your CareLink Account is Openned Now.</h3>
+<h1>Doctor Appointment Panel</h1>
+<table id="appointmentTable">
+    <tr>
+        <th>Patient Name</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Action</th>
+    </tr>
+    <tr>
+        <td>John Doe</td>
+        <td>2024-04-15</td>
+        <td>10:00 AM</td>
+        <td>
+            <form class="appointmentForm">
+                <input type="hidden" name="patientName" value="John Doe">
+                <input type="hidden" name="date" value="2024-04-15">
+                <input type="hidden" name="time" value="10:00 AM">
+                <input type="button" value="Accept" onclick="acceptAppointment(this)">
+                <input type="button" value="Reject" onclick="rejectAppointment(this)">
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>Jane Smith</td>
+        <td>2024-04-16</td>
+        <td>2:30 PM</td>
+        <td>
+            <form class="appointmentForm">
+                <input type="hidden" name="patientName" value="Jane Smith">
+                <input type="hidden" name="date" value="2024-04-16">
+                <input type="hidden" name="time" value="2:30 PM">
+                <input type="button" value="Accept" onclick="acceptAppointment(this)">
+                <input type="button" value="Reject" onclick="rejectAppointment(this)">
+            </form>
+        </td>
+    </tr>
+</table>
+
+<div id="upcomingAppointments">
+    <h2>Upcoming Appointments</h2>
+    <ul id="upcomingList">
+        <!-- Accepted appointments will be appended here -->
+    </ul>
+    
+</div>
+
+<script>
+function acceptAppointment(button) {
+    var form = button.parentNode;
+    var patientName = form.elements["patientName"].value;
+    var date = form.elements["date"].value;
+    var time = form.elements["time"].value;
+
+    // Append the accepted appointment to the upcoming appointments section
+    var upcomingList = document.getElementById("upcomingList");
+    var listItem = document.createElement("li");
+    listItem.textContent = `Appointment with ${patientName} on ${date} at ${time}`;
+    listItem.innerHTML=listItem.innerHTML+"<button type='button' onclick=pris() class='btn btn-primary'>Send Priscription</button><button type='button' onclick=done() class='btn btn-success'>Done</button>";
+    upcomingList.appendChild(listItem);
+
+    // Remove the table row
+    var tableRow = button.closest("tr");
+    tableRow.remove();
+
+    // For demo purposes, just display a message
+    alert(`Appointment with ${patientName} on ${date} at ${time} accepted.`);
+}
+
+function rejectAppointment(button) {
+    var form = button.parentNode;
+    var patientName = form.elements["patientName"].value;
+    var date = form.elements["date"].value;
+    var time = form.elements["time"].value;
+
+    // Remove the table row
+    var tableRow = button.closest("tr");
+    tableRow.remove();
+
+    // For demo purposes, just display a message
+    alert(`Appointment with ${patientName} on ${date} at ${time} rejected.`);
+}
+</script>
+</body>
+</html>

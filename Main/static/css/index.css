@@ -1,0 +1,547 @@
+*{
+    padding:0;
+    margin:0;
+
+}
+
+
+.navbar{
+    display:flex;
+    background-color:white;
+    /* gap: 310px; */
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    box-shadow: 2px 2px 10px black;
+    padding-bottom: 5px;
+    height: 90px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    z-index: 3;
+}
+h1{
+    top: -20px;
+    color: crimson;
+    text-shadow: 0px 0px 1px black;
+    text-align: center;
+    margin-bottom: 0px;
+}
+p{
+    margin-bottom: 2px;
+}
+.head{
+    position: relative;
+    text-align:center;
+    display: inline-block;
+    margin: auto;
+    
+}
+
+.link{
+    position: absolute;
+    padding: 10px;
+    font-size:20px;
+    display: inline-block;
+    margin-right: 0px;
+    top: -20px;
+    padding-bottom: 0px;
+
+}
+.link img{
+    margin: 10px;
+    top: 20px;
+    width: 80px;
+    height: 80px;
+}
+@media screen and (max-width: 500px){
+
+.link img{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    left: -20px;
+    top: 10px;   
+}
+.head{
+    top: 10px;
+}
+#map{
+    top: 100px;
+}
+h1{
+    font-size: 35px;
+}
+p{
+    font-size: 13px;
+}
+#di{
+    position: relative;
+    width: 350px;
+}
+#city-input{
+    width: 250px;
+}
+    #but{
+    position: relative;
+    /* left: 80%; */
+    width: 70px;
+    padding: 1px;
+}
+}
+
+.link a{
+    text-decoration: none;
+}
+.creator{
+    position:fixed;
+    bottom: 180px;
+    /* font-size: 20px; */
+    margin-left:100px;
+    right:10%;
+    border: 1px solid cornflowerblue;
+    background-color: white;
+    color: cornflowerblue;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    box-shadow: 2px 2px 4px crimson, 2px 2px 4px crimson;
+    text-align: center;
+    vertical-align: middle;
+    margin: auto;
+    padding: auto;
+    line-height: 10px;
+    z-index: 1;
+}
+#creator1{
+    left: -70%;
+    width: 100px;
+    height: 100px;
+}
+.mapboxgl-ctrl-geocoder--icon-search{
+    position: relative;
+    left: 50px;
+}
+.mapboxgl-ctrl-geocoder--icon{
+    position: relative;
+    left: 50px;
+}
+svg{
+    position: relative;
+    left: 50px;
+}
+.wes2{
+    font-size: 10px;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    color: cornflowerblue;
+    font-weight: bold;
+    top: 35%;
+    width: 80px;
+    text-shadow: 1px 1px 2px cornflowerblue;
+}
+.below{
+    background-color: white;
+    width: 100%;
+    height: 900px;
+    z-index: 2;
+    position: absolute;
+    top: 580px;
+    box-shadow: 2px 2px 20px crimson;
+    border-radius: 40px 40px 0px 0px;
+}
+.belowhead{
+    font-size: 3vw;
+    position: relative;
+    left: -30%;
+    top: 45px;
+}
+.creator img{
+    width: 90px;
+    height: 95px;
+    object-fit: cover;
+    position: relative;
+    top: 0px;
+}
+#creator1 img{
+    top: 5px;
+    width: 85px;
+    height: 90px;
+}
+
+.arrow{
+    display: block;
+    font-size: 50px;
+    height: 40px;
+    width: 100px;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    cursor: pointer;
+    color: rgb(255, 142, 142);
+    /* overflow-y: hidden; */
+}
+.arrow1{
+    display: block;
+    font-size: 50px;
+    height: 40px;
+    width: 100px;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    cursor: pointer;
+    color: rgb(255, 142, 142);
+    /* overflow-y: hidden; */
+}
+#arrow1{
+    display: none;
+    position: absolute;
+    top: 15px;
+}
+#arrow{
+    color: rgb(255, 142, 142);
+}
+#arrow1{
+    color: rgb(255, 142, 142);
+}
+.home{
+    z-index: 5;
+    top: 0px;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+.home1{
+    z-index: 4;
+    position: fixed;
+
+    width: 100%;
+    height: 100%;
+    background: rgba(20, 20, 20, 0.9);
+    -pie-background:  rgba(20, 20, 20, 0.9);
+}
+.home h2{
+    position: relative;
+    top: 73%;
+    left: 3%;
+    color: black;
+    font-family: Perpetua, Segoe UI, 'Open Sans';
+    text-align: center;
+}
+#mydiv1{
+    position: absolute;
+    top: 35%;
+    left: 42%;
+    /* filter: drop-shadow(5px 5px 5px #222); */
+    box-shadow: none;
+}
+#mydiv2{
+    position: absolute;
+    top: 0%;
+    left: 40%;
+    /* filter: drop-shadow(5px 5px 5px #222); */
+    box-shadow: none;
+}
+
+.search{
+    position: relative;
+    margin: auto;
+    margin:7px;
+    top: 100px;
+    width: 400px;
+    display: inline-block;
+    left: 37%;
+}
+.search input[type=text]{
+    width:300px;
+    height:40px;
+    border-radius:25px;
+    border: none;
+    font-size: 25px;
+}
+#sear{
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    background-color:var(--light-color);
+    color: crimson;
+    padding: 5px 10px;
+    margin-right: 16px;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+    top: 230px;
+    left: 60%;
+}
+.po{
+    color: orange;
+    position: relative;
+    top: 90px;
+    font-size: 40px;
+    left: 30%;
+    font-family: 'Times New Roman', Times, serif;
+}
+#myInput {
+    box-sizing: border-box;
+    background-image: url('searchicon.png');
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    display: inline-block;
+    color: crimson;
+  }
+  
+  /* The search field when it gets focus/clicked on */
+  #myInput:focus {outline: 3px solid var(--light-purple-color);}
+  
+  /* The container <div> - needed to position the dropdown content */
+  /* .dropdown {
+    position: relative;
+    display: inline-block;
+    
+    height: 400px;
+  }
+   */
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    font-size: 25px;
+    z-index: 5;
+    color: crimson;
+    position: relative;
+    background-color: white;
+    min-width: 200px;
+    height: 300px;
+    border: 1px solid black;
+    border-radius: 10px;
+    top: 10px;
+    /* z-index: 5; */
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    font-family: 'Times New Roman', Times, serif;
+    position: relative;
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    font-size: 25px;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #f1f1f1}
+
+  .popup-close {
+    border: none;
+    position: absolute;
+    top: 300px;
+    left: 48%;
+    color: crimson;
+    font-size: 30px;
+    font-weight: bold;
+    transition: 0.3s;
+    margin: auto;
+    padding: 6px;
+    background-color: white;
+}
+.popup-close:hover{
+    background-color: white;
+    color: orange;
+}
+.dropdown-content {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /* position: absolute; */
+    position: relative;
+    background-color: white;
+    min-width: 230px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    top: 10px;
+    /* z-index: 5; */
+    text-align: center;
+    display: none;
+  }
+  .dropdown-content a{
+    display: none;
+  }
+  /* Links inside the dropdown */
+  .opt{
+    color: var(--light-purple-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    width: 400px;
+    height: 70px;
+    /* display: block; */
+    display: none;
+  }
+  #fileInput{
+    position: relative;
+    left: 45%;
+    top: 340px;
+  }
+  .quiz-body{
+    position: relative;
+    left: 5%;
+    top: 200px;
+    overflow-y: visible;
+  }
+  .quiz-questions a{
+    text-decoration: none;
+    color: orange;
+  }
+  .quiz-question{
+    font-size: 30px;
+    text-align: center;
+    height: 80px;
+    width: 90%;
+    padding: 10px;
+    padding-top: 20px;
+    background-color: white;
+    box-shadow: 2px 2px 5px crimson;
+    border-radius: 10px;
+    position: relative;
+}
+.container {
+    position: absolute;
+    display: none;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    z-index: 1;
+}
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"],
+button {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#appointmentDetails {
+    position: absolute;
+    display: block;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    top: 45%;
+    left: 42%;
+    z-index: 4;
+    display: none;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+}
+.dialogue-box {
+    position: absolute;
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+    top: 40%;
+    left: 41%;
+    z-index: 4;
+  }
+  .options {
+    margin-top: 20px;
+  }
+  button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button#option1 {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  button#option2 {
+    background-color: #f44336;
+    color: white;
+  }
+  .mall img{
+    position: absolute;
+    margin: 10px;
+    top: 3px;
+    right: 45px;
+    width: 80px;
+    height: 80px;
+}
+  .container1{
+    position: absolute;
+    display: block;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    height: 500px;
+    top: 12%;
+    left: 1%;
+    z-index: 2;
+    display: none;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+  }
+  
+  .listitem{
+    text-align: center;
+    color: #ff7f50; /* Orange color for heading */
+  }
+  
+  .doctor-table {
+    width: 100%;
+  }
+  
+  .doctor-card {
+    text-align: center;
+    background-color: #fff; /* White background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    margin-bottom: 20px;
+  }
+  
+  .doctor-name {
+    padding: 20px;
+    font-size: 18px;
+    color: #333; /* Dark gray color for doctor's name */
+  }

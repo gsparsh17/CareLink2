@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CareLink</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0;">
+    {% load static %}
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo1.png' %}">
+    <style>
+    body { margin: 0; padding: 0; }
+    #map { position: absolute; top: 90px; bottom: 0; width: 100%; z-index: -1; }
+    </style>
+</head>
+<body>
+    <div class="home" id="home">
+        <img class="load" id="mydiv2" src="{% static 'img/logo.png' %}" width="370" height="300" alt="">
+        <img class="load" id="mydiv1" src="{% static 'img/gif.gif' %}" width="300" height="300" alt="">
+        <h2 id="wel">Loading...</h2>
+    </div>
+    <div class="home1" id="home1"></div>
+    <header class="navbar">
+        <pre id="info"></pre>
+        <div class="link"><img src="{% static 'img/logo1.png' %}" alt=""></div>
+        <div class="head">
+            <div id="demo"></div>
+            <h1>CareLink</h1>
+            <p>Your One stop Hospital for all Checkups</p>
+            
+        </div>
+        <div class="mall"><a href="https://lakshya0018up.github.io/E-commerce/" target="_blank"><img width="80px" height="80px" src="{% static 'img/logo2.png' %}" alt=""></a></div>
+        
+        <div class="creator" id="creator" onclick="dial()"><a target="_self" id="wes" href="https://ss-disease-prediction.streamlit.app/" ><img src="{% static 'img/13-2.png' %}" alt=""></a><a target="_blank" id="wes1" class="wes2"></a></div>
+        <!-- <svg class="mapboxgl-ctrl-geocoder--icon mapboxgl-ctrl-geocoder--icon-search" viewBox="0 0 18 18" xml:space="preserve" width="18" height="18"><path d="M7.4 2.5c-2.7 0-4.9 2.2-4.9 4.9s2.2 4.9 4.9 4.9c1 0 1.8-.2 2.5-.8l3.7 3.7c.2.2.4.3.8.3.7 0 1.1-.4 1.1-1.1 0-.3-.1-.5-.3-.8L11.4 10c.4-.8.8-1.6.8-2.5.1-2.8-2.1-5-4.8-5zm0 1.6c1.8 0 3.2 1.4 3.2 3.2s-1.4 3.2-3.2 3.2-3.3-1.3-3.3-3.1 1.4-3.3 3.3-3.3z"></path></svg> -->
+        <div class="creator" id="creator1" onclick="dial()"><a target="_self" id="wes" href="https://doc-rec.streamlit.app/" ><img src="{% static 'img/13-3.png' %}" alt=""></a><a target="_blank" id="wes1" class="wes2"></a></div>
+        
+    </header>
+    <div class="dialogue-box" id="dialogue-box">
+        <p>Are You A Doctor Or A Patient ?</p>
+        <div class="options">
+          <button id="option1" onclick="location.href='/profile';">Doctor</button>
+          <button id="option2" onclick="close()">Patient</button>
+        </div>
+      </div>
+      <script>
+        document.getElementById('option2').onclick = function() {
+  document.getElementById("dialogue-box").style.display="none";
+  document.getElementById("home1").style.display="none";
+}
+function d(){
+    document.getElementById("container1").style.display='none';
+}
+    </script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+    
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.css" type="text/css">
+    <div id="weather"></div>
+        <div class="container1" id="container1">
+          <h1 class="listitem">List of Doctors</h1>
+          <table class="doctor-table">
+            <tbody id="tbody">
+              <!-- Add more doctors as needed -->
+        <!-- <input type="file" id="fileUpload" accept=".xlsx" style="display: none;" /> -->
+     <!-- Button to trigger file upload -->
+        <!-- <button onclick="uploadFile()">Upload Excel File</button>  -->
+            {%for i in result %}
+            <tr class="doctor-card">
+                <td class="doctor-name">
+                    
+                    <a onclick="d()" href="#about">{{i}}</a>
+                    
+                    </td></tr>
+                    {%endfor%}
+            </tbody>
+          </table>
+        </div>
+    <div class="container" id="container">
+        <h1>Book Appointment</h1>
+        <form id="appointmentForm">
+            <label for="doctor">Patient Name</label>
+            <input type="text" id="patient" class="inp" name="name" required>
+            
+            <label for="hospital">Hospital:</label>
+            <input type="text" id="hospital" class="inp" name="hospital" id="hosp" required>
+            
+            <label for="date">Date:</label>
+            <input type="date" id="date" class="inp" name="date" required>
+
+            <label for="time">Time:</label>
+            <input type="time" id="time" class="inp" name="time" required>
+
+            <button type="submit">Book Appointment</button>
+        </form>
+    </div>
+    <div id="appointmentDetails"></div>
+    <div class="below" id="below">
+        <a class="arrow" id="arrow">&#129169;</a>
+        <a class="arrow1" id="arrow1">&#129171;</a>
+        <h1 class="belowhead">Your NearBy Clinics</h1>
+        <p class="po">Search Your Disease Specialist Hospitals</p>
+        <div class="search">
+            <form class="input-form" method="post" action="disease1">
+                {% csrf_token %}
+        
+                    <input type="text" class="input" placeholder="What's Your Disease" name="mySearch" onkeyup="filterfunction()" id="myInput"  required>
+                    <div class="myDropdown dropdown-content" id="myDropdown">
+
+                       <button type="submit">Submit</button>
+            </form>
+
+           
+        </div>
+        <button id="sear">
+            <i class="fa fa-search"
+               style="font-size: 18px;">
+            </i>
+        </button>
+        <!-- <button id="popup-close" class="popup-close" onclick="loadQuestion();" ><a href="disease1">Show</a></button> -->
+        <div class = "quiz-body" id="quiz-body">
+            {%for i in hospital %}
+            <h2 class = "quiz-question">
+                <a class="sel" onclick="s('${hospitals[i]}','${find}');"
+                >{{i}}</a></h2>
+                {%endfor%}
+        </div>
+        <!-- <input type="file" id="fileInput" accept=".xlsx">-->
+        <!-- Button to trigger file upload -->
+        <!-- <input type="file" id="fileUpload" accept=".xlsx" style="display: none;" />
+    <button onclick="uploadFile()">Upload Excel File</button> -->
+    </div>
+    
+    </div>
+    <div id="map"></div>
+        
+    
+    <script>
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoibGFrc2gxMTAiLCJhIjoiY2xueTRyM2Z3MGs3NTJrbnZ6M2EybHhtdiJ9.HcQ1LL4TnXxK29Mqbmrj-g';
+    const map = new mapboxgl.Map({
+    container: 'map',
+
+    style: 'mapbox://styles/mapbox/streets-v12',
+    center: [78.969, 20.539],
+    zoom: 4
+    });
+    
+    map.on('load', function () {
+    map.resize();
+    });
+
+//     if ("geolocation" in navigator) {
+//   // Prompt user for permission to access their location
+//   navigator.geolocation.getCurrentPosition(
+//     // Success callback function
+//     (position) => {
+//       // Get the user's latitude and longitude coordinates
+//       const lat = position.coords.latitude;
+//       const lng = position.coords.longitude;
+
+//       // Do something with the location data, e.g. display on a map
+//       console.log(`Latitude: ${lat}, longitude: ${lng}`);
+//     },
+//     // Error callback function
+//     (error) => {
+//       // Handle errors, e.g. user denied location sharing permissions
+//       console.error("Error getting user location:", error);
+//     }
+//   );
+// } else {
+//   // Geolocation is not supported by the browser
+//   console.error("Geolocation is not supported by this browser.");
+// }
+    map.addControl(
+        new mapboxgl.GeolocateControl({
+            positionOptions:{
+                enableHighAccuracy:true
+            },
+
+            trackUserLocation:true,
+            showUserHeading:true
+        })
+    )
+    var geocoder = new MapboxGeocoder({
+  accessToken: mapboxgl.accessToken,
+  mapboxgl: mapboxgl
+});
+
+// document.getElementById('search-button').addEventListener('click', function() {
+//   var query = "Lucknow";
+//   geocoder.query(query);
+// });
+
+
+map.addControl(geocoder);
+    map.on('click', (e) => {
+        // document.getElementById('info').innerHTML =
+        //     // `e.point` is the x, y coordinates of the `mousemove` event
+        //     // relative to the top-left corner of the map.
+        //     JSON.stringify(e.point) +
+        //     '<br />' +
+        //     // `e.lngLat` is the longitude, latitude geographical position of the event.
+        //     JSON.stringify(e.lngLat.wrap());
+            var v=JSON.parse(JSON.stringify(e.lngLat.wrap()));
+            console.log(v["lng"])
+            showWeather1(v["lng"],v["lat"])
+    });
+    var z=document.getElementsByClassName("mapboxgl-ctrl-icon");
+    console.log(z)
+  function s(par,fin){
+  document.getElementById("container").style.display='block';
+//   document.getElementById("hosp").value="par";
+  document.getElementById("container1").style.display='block';
+  var query = par.toString() +" Lucknow";
+  console.log(query);
+  geocoder.query(query);
+  $('.below').animate({ top:"580px"});
+  arrow1.style.display='none';
+            setTimeout(function() {
+                creator.style.display='block';
+                }, 400);
+            arrow.style.display='block';
+  }
+    function getLocation() {
+ if (navigator.geolocation) {
+    // navigator.geolocation.getCurrentPosition(showPosition);
+    navigator.geolocation.getCurrentPosition(showWeather);
+ } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+ }
+}
+    var wes = document.getElementById("wes");
+// var wes1 = document.getElementById("wes1");
+// function getLocation() {
+//  if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(showPosition);
+//     navigator.geolocation.getCurrentPosition(showWeather);
+//  } else { 
+//     x.innerHTML = "Geolocation is not supported by this browser.";
+//  }
+// }
+function showWeather(position) {
+//     x.innerHTML = "Latitude: " + position.coords.latitude + 
+//  "<br>Longitude: " + position.coords.longitude;
+ var apiKey = "fdf8effb2626c5d9737dd56efc916c2d"; // replace with your own API key
+ var apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}`;
+
+ fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      var temperature = data.main.temp - 273.15; // converting from Kelvin to Celsius
+      // document.getElementById("weather").innerHTML = `Weather: ${data.weather[0].description}<br>Temperature: ${temperature.toFixed(2)} &#8451;`;
+      wes.innerHTML=temperature.toFixed(2)+`&#8451<br>`;
+      wes1.innerHTML=data.weather[0].description.toUpperCase();
+    })
+    .catch(error => {
+      console.error("Error fetching weather data:", error);
+      document.getElementById("weather").innerHTML = "Error fetching weather data.";
+    });
+}
+z.onclick=function(){console.log("hello")};
+    </script>
+ <script src="{% static 'js/index.js' %}"></script>
+ <style>
+    .mapboxgl-ctrl-geocoder--icon-search{
+    position: absolute;
+    left: 85%;
+}
+.mapboxgl-ctrl{
+    position: relative;
+    bottom: 50%;
+}
+#info {
+        display: none;
+        position: relative;
+        margin: 0px auto;
+        word-wrap: anywhere;
+        white-space: pre-wrap;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        font-size: 12px;
+        text-align: center;
+        color: #222;
+        background: #fff;
+    }
+
+ </style>
+</body>
+</html>
+<script>
+    document.getElementById("appointmentForm").addEventListener("submit",function(event){
+        event.preventDefault();
+        
+        const patient = document.getElementById("patient").value;
+        const hospital = document.getElementById("hospital").value;
+        const date = document.getElementById("date").value;
+        const time = document.getElementById("time").value;
+
+        // Display the entered data
+        const appointmentDetails = document.getElementById("appointmentDetails");
+        document.getElementById("appointmentDetails").style.display='block';
+        appointmentDetails.innerHTML = `
+            <h2>Appointment Succesful!!</h2>
+            <p><strong>Patient Name:</strong> ${patient}</p>
+            <p><strong>Hospital:</strong> ${hospital}</p>
+            <p><strong>Date:</strong> ${date}</p>
+            <p><strong>Time:</strong> ${time}</p>
+        `;
+
+        // Optionally, you can display a message to the user indicating successful booking
+        document.getElementById("appointmentForm").reset(); // Clear the form after successful booking
+        setTimeout(e2, 2000);
+    });
+    function e2(){
+        document.getElementById("appointmentDetails").style.display='none';
+    }
+</script>
+
+ 
+ <script>
+     // Function to trigger file input click event
+     function uploadFile() {
+         const fileInput = document.getElementById('fileUpload');
+         fileInput.click();
+     }
+ 
+     // Event listener for file input change
+     const fileInput = document.getElementById('fileUpload');
+     fileInput.addEventListener('change', function(event) {
+         const file = event.target.files[0];
+         const excelParser = new ExcelToJSON();
+         excelParser.parseExcel(file);
+     });
+ 
+     // ExcelToJSON class for parsing Excel file
+     var ExcelToJSON = function() {
+         this.parseExcel = function(file) {
+             var reader = new FileReader();
+             reader.onload = function(e) {
+                 var data = e.target.result;
+                 var workbook = XLSX.read(data, { type: 'binary' });
+ 
+                 var allSheetData = {};
+                 workbook.SheetNames.forEach(function(sheetName) {
+                     // Convert sheet data to JSON
+                     var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+                     allSheetData[sheetName] = XL_row_object;
+                 });
+ 
+                 // Store all sheet data in local storage
+                 localStorage.setItem('excelData2', JSON.stringify(allSheetData));
+ 
+                 // Display all sheet data (you can modify this part as needed)
+                 console.log(Object.entries(allSheetData)[0][1]);
+             };
+ 
+             reader.onerror = function(ex) {
+                 console.log(ex);
+             };
+ 
+             reader.readAsBinaryString(file);
+         };
+     };
+ 
+     // Parse the Excel data from local storage and filter hospitals
+     function parseExcelFromLocalStorage() {
+         const excelData = localStorage.getItem('excelData');
+         if (excelData) {
+             const allSheetData = JSON.parse(excelData);
+             
+             // Access and manipulate data as needed
+             console.log(Object.entries(allSheetData)[0][1]);
+         } else {
+             console.log('No Excel data found in local storage.');
+         }
+     }
+ 
+     // Check if Excel data is already stored in local storage and parse it
+     parseExcelFromLocalStorage();
+ </script>
+ <script>
+ function parseExcelFromLocalStorage1() {
+    const excelData1 = localStorage.getItem('excelData1');
+    if (excelData1) {
+        const allSheetData = JSON.parse(excelData1);
+        
+        // Access and manipulate data as needed
+        console.log(Object.entries(allSheetData)[0][1]);
+    } else {
+        console.log('No Excel data found in local storage.');
+    }
+}
+
+function d(){
+    document.getElementById("container1").style.display='none';
+}
+
+// Check if Excel data is already stored in local storage and parse it
+parseExcelFromLocalStorage1();
+function loadQuestion1(disease){
+const excelData1 = localStorage.getItem('excelData2');
+const allSheetData = JSON.parse(excelData1);
+const jsonData = Object.entries(allSheetData)[0][1];
+console.log(jsonData)
+disease="Cancer"
+const filteredData = jsonData.filter(entry => entry.disease === disease);
+const sortedData = filteredData.sort((a, b) => b.rate - a.rate);
+console.log(sortedData)
+console.log(Object.entries(sortedData)[1][1].name)
+const data=Object.entries(sortedData)
+for(i in data)
+{
+   console.log(Object.entries(sortedData)[i][1].name)
+   var my1=document.getElementById("tbody");
+//   my1.innerHTML = my1.innerHTML+ `<tr class="doctor-card"><td class="doctor-name"><a onclick="d()" href="#about">${Object.entries(sortedData)[i][1].name}-${Object.entries(sortedData)[i][1].rate}</a></td></tr>`
+   
+}
+for(i in data)
+{
+   const arr={{result}};
+   console.log(arr);
+
+   var my1=document.getElementById("tbody");
+  my1.innerHTML = my1.innerHTML+ `<tr class="doctor-card"><td class="doctor-name"><a onclick="d()" href="#about">${Object.entries(sortedData)[i][1].name}-${Object.entries(sortedData)[i][1].rate}</a></td></tr>`
+   
+}
+// for(i in hospitals)
+//   {
+//     console.log(hospitals[i]);
+//     var my1=document.getElementById("quiz-body");
+//     my1.innerHTML = my1.innerHTML+ `<h2 class = "quiz-question"><a class="sel" onclick="s('${hospitals[i]}');">${hospitals[i]}</a></h2>`
+//   }
+
+reader.readAsArrayBuffer(file1);
+}
+loadQuestion1();
+
+// const find = para;
+// console.log(find);
+// const filteredData = jsonData.filter(row => row['d1'] === find || row['d2'] === find || row['d3'] === find);
+// const hospitals = filteredData.map(row => row['name']);
+// console.log(hospitals);
+// for(i in hospitals)
+//   {
+//     console.log(hospitals[i]);
+//     var my1=document.getElementById("quiz-body");
+//     my1.innerHTML = my1.innerHTML+ `<h2 class = "quiz-question"><a class="sel" onclick="s('${hospitals[i]}');">${hospitals[i]}</a></h2>`
+//   }
+
+</script>

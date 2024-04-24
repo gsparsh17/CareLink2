@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+  <title>List of Doctors</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7; /* Light gray background */
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    width: 20%;
+    height: 55%;
+    background-color: #fff; /* White background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #ff7f50; /* Orange color for heading */
+  }
+  
+  .doctor-table {
+    width: 100%;
+  }
+  
+  .doctor-card {
+    background-color: #fff; /* White background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    margin-bottom: 20px;
+  }
+  
+  .doctor-name {
+    padding: 20px;
+    font-size: 18px;
+    color: #333; /* Dark gray color for doctor's name */
+  }
+  
+</style>
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <h1>List of Doctors</h1>
+      <table class="doctor-table">
+        <tbody id="tbody">
+          <!-- Add more doctors as needed
+    <input type="file" id="fileUpload" accept=".xlsx" style="display: none;" />
+ Button to trigger file upload -->
+    <!-- <button onclick="uploadFile()">Upload Excel File</button>  -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script>
+    // function uploadFile() {
+    //      const fileInput = document.getElementById('fileUpload');
+    //      fileInput.click();
+    //  }
+ 
+    //  // Event listener for file input change
+    //  const fileInput = document.getElementById('fileUpload');
+    //  fileInput.addEventListener('change', function(event) {
+    //      const file1 = event.target.files[0];
+    //      const excelParser = new ExcelToJSON();
+    //      excelParser.parseExcel(file1);
+    //  });
+ 
+    //  // ExcelToJSON class for parsing Excel file
+    //  var ExcelToJSON = function() {
+    //      this.parseExcel = function(file1) {
+    //          var reader = new FileReader();
+    //          reader.onload = function(e) {
+    //              var data = e.target.result;
+    //              var workbook = XLSX.read(data, { type: 'binary' });
+ 
+    //              var allSheetData = {};
+    //              workbook.SheetNames.forEach(function(sheetName) {
+    //                  // Convert sheet data to JSON
+    //                  var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+    //                  allSheetData[sheetName] = XL_row_object;
+    //              });
+ 
+    //              // Store all sheet data in local storage
+    //              localStorage.setItem('excelData1', JSON.stringify(allSheetData));
+ 
+    //              // Display all sheet data (you can modify this part as needed)
+    //              console.log(Object.entries(allSheetData)[0][1]);
+    //          };
+ 
+    //          reader.onerror = function(ex) {
+    //              console.log(ex);
+    //          };
+ 
+    //          reader.readAsBinaryString(file1);
+    //      };
+    //  };
+ 
+     // Parse the Excel data from local storage and filter hospitals
+     function parseExcelFromLocalStorage1() {
+         const excelData1 = localStorage.getItem('excelData1');
+         if (excelData1) {
+             const allSheetData = JSON.parse(excelData1);
+             
+             // Access and manipulate data as needed
+             console.log(Object.entries(allSheetData)[0][1]);
+         } else {
+             console.log('No Excel data found in local storage.');
+         }
+     }
+ 
+     // Check if Excel data is already stored in local storage and parse it
+     parseExcelFromLocalStorage1();
+     function loadQuestion(){
+  const excelData1 = localStorage.getItem('excelData1');
+    const allSheetData = JSON.parse(excelData1);
+    const jsonData = Object.entries(allSheetData)[0][1];
+    console.log(jsonData)
+    disease="Cancer"
+    const filteredData = jsonData.filter(entry => entry.disease === disease);
+    const sortedData = filteredData.sort((a, b) => b.rate - a.rate);
+    console.log(sortedData)
+    console.log(Object.entries(sortedData)[1][1].name)
+    const data=Object.entries(sortedData)
+    for(i in data)
+    {
+        console.log(Object.entries(sortedData)[i][1].name)
+        var my1=document.getElementById("tbody");
+       my1.innerHTML = my1.innerHTML+ `<tr class="doctor-card"><td class="doctor-name"><a href="">${Object.entries(sortedData)[i][1].name}-${Object.entries(sortedData)[i][1].rate}</a></td></tr>`
+        
+    }
+    // for(i in hospitals)
+    //   {
+    //     console.log(hospitals[i]);
+    //     var my1=document.getElementById("quiz-body");
+    //     my1.innerHTML = my1.innerHTML+ `<h2 class = "quiz-question"><a class="sel" onclick="s('${hospitals[i]}');">${hospitals[i]}</a></h2>`
+    //   }
+
+    reader.readAsArrayBuffer(file1);
+     }
+     loadQuestion();
+     
+    // const find = para;
+    // console.log(find);
+    // const filteredData = jsonData.filter(row => row['d1'] === find || row['d2'] === find || row['d3'] === find);
+    // const hospitals = filteredData.map(row => row['name']);
+    // console.log(hospitals);
+    // for(i in hospitals)
+    //   {
+    //     console.log(hospitals[i]);
+    //     var my1=document.getElementById("quiz-body");
+    //     my1.innerHTML = my1.innerHTML+ `<h2 class = "quiz-question"><a class="sel" onclick="s('${hospitals[i]}');">${hospitals[i]}</a></h2>`
+    //   }
+
+ </script>
+  </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dialogue Box</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<style>
+  body {
+  font-family: Arial, sans-serif;
+}
+
+.dialogue-box {
+  position: relative;
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  top: 50%;
+  margin: auto;
+}
+
+.options {
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button#option1 {
+  background-color: #4CAF50;
+  color: white;
+}
+
+button#option2 {
+  background-color: #f44336;
+  color: white;
+}
+
+</style>
+<body>
+<div class="dialogue-box">
+  <p>Are You A Doctor Or A Patient ?</p>
+  <div class="options">
+    <button id="option1">Doctor</button>
+    <button id="option2">Patient</button>
+  </div>
+</div>
+</body>
+</html>
+

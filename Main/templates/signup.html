@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+        h2 {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    
+<form id="doctorForm" method="POST" action="/signup">
+    {% csrf_token %}
+    <h2>Doctor Registration Form</h2>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <label for="specialization">Specialization:</label>
+    <input type="text" id="specialization" name="specialization" required>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <label for="qualification">Qualification:</label>
+    <input type="text" id="qualification" name="qualification" required>
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" name="phone" required>
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" required></textarea>
+    <label for="experience">Experience (in years):</label>
+    <input type="number" id="experience" name="experience" min="0" required>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="CustID" required>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <button class="btn btn-primary" id="sub" type="submit">Submit</button>
+</form>
+
+<!-- <script>
+    document.getElementById("doctorForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var formData = new FormData(this);
+        var doctorData = {};
+        formData.forEach(function(value, key){
+            doctorData[key] = value;
+        });
+        console.log(doctorData);
+
+        // Here you can add further processing like sending data to a server
+        // For example, you can use fetch API to send the data to a server
+        // fetch('your-server-url', {
+        //     method: 'POST',
+        //     body: JSON.stringify(doctorData),
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // }).then(response => {
+        //     if (response.ok) {
+        //         return response.json();
+        //     }
+        //     throw new Error('Network response was not ok.');
+        // }).then(data => {
+        //     console.log(data);
+        // }).catch(error => {
+        //     console.error('There has been a problem with your fetch operation:', error);
+        // });
+        
+        // Reset form fields
+        this.reset();
+    });
+</script> -->
+
+</body>
+</html>
