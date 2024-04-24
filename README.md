@@ -6,4 +6,5 @@ This is the app called Carelink that works as a bridge between doctors and patie
 
 # Running The Code
 `cd Google_Girl_Hackathon` <br>
+`pip install -m requirements.txt` <br>
 `python manage.py runserver`
