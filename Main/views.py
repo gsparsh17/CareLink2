@@ -6,6 +6,8 @@ from django.contrib.auth import login, logout, authenticate
 from django.core.mail import send_mail
 from django.utils.crypto import get_random_string
 import pandas as pd
+from array import array
+import numpy as np
 OTP = get_random_string(4, allowed_chars='0123456789')
 OTP1 = get_random_string(4, allowed_chars='0123456789')
 # Create your views here.
@@ -73,7 +75,7 @@ def panel(request):
 
 def disease(request):
     
-    file_path = r"Main\convert (1).xlsx"
+    file_path = r"Main\Medanta.xlsx"
     df = pd.read_excel(file_path)
     disease='Cancer'
     result=[]
@@ -87,10 +89,12 @@ def disease1(request):
     find=''
     if request.method=='POST':
         find=request.POST.get('mySearch')      
-        file_path = r"Main\Medanta.xlsx"
+        file_path = r"Main\convert (1).xlsx"
         df = pd.read_excel(file_path)
         fil = df[(df['d1'] == find) | (df['d2'] == find) | (df['d3'] == find)]
         hospital = fil['name']
+        res = np.array(hospital)
+        print(res)
         print(hospital)
-    return render(request, 'index.html',{'hospital':hospital})
+    return render(request, 'index.html',{'res':res, 'find':find})
 # Create your views here.

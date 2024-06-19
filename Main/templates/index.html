@@ -131,9 +131,9 @@ function d(){
         </button>
         <!-- <button id="popup-close" class="popup-close" onclick="loadQuestion();" ><a href="disease1">Show</a></button> -->
         <div class = "quiz-body" id="quiz-body">
-            {%for i in hospital %}
+            {%for i in res %}
             <h2 class = "quiz-question">
-                <a class="sel" onclick="s('${hospitals[i]}','${find}');"
+                <a class="sel" onclick="s({res},{find});"
                 >{{i}}</a></h2>
                 {%endfor%}
         </div>
