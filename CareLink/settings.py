@@ -88,7 +88,7 @@ DATABASES = {
        'USER': 'postgres',
        'PASSWORD': 'eMUnMrIdlSEmMdvUTdcHKvNhcVlaieko',
        'HOST': 'viaduct.proxy.rlwy.net',
-       'PORT': '22143',
+       'PORT': '22143'
    }
 }
 
@@ -128,7 +128,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# STATICFILES_DIRS = [BASE_DIR/'static',]
+STATICFILES_DIRS = [BASE_DIR/'static',]
 STATIC_ROOT = BASE_DIR/'staticfiles'
 
 # Default primary key field type
