@@ -1,10 +1,9 @@
-# Google_Girl_Hackathon
+# CareLink_Application
 This is the app called Carelink that works as a bridge between doctors and patients.
 
 # Clone Repo
-`git clone https://github.com/Freebirddd123/Google_Girl_Hackathon.git`
+`git clone https://github.com/gsparsh17/CareLink2.git`
 
 # Running The Code
-`cd Google_Girl_Hackathon` <br>
 `pip install -m requirements.txt` <br>
 `python manage.py runserver`
